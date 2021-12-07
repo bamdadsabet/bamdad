@@ -86,7 +86,7 @@
            min-height: 0;
            overflow: hidden;
            position: relative;
-           color: honeydew;
+               color: honeydew;
            transition: min-height .6s;
            p{
                padding:2.5rem 1.2rem;

@@ -12,7 +12,7 @@
 </template>
 
 <script>
-    import moviePoster from "./moviePoster";
+    import moviePoster from "../moviePoster";
     export default {
         name: "PosterSlider",
         components: {

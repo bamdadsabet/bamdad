@@ -1,7 +1,7 @@
 <template>
     <div id="slider">
         <video autoplay muted loop :key="videoIndex">
-            <source :src="url">
+            <source :src="video.url">
             Your browser does not support the video tag.
         </video>
     </div>
@@ -16,33 +16,48 @@
                 <path d="M27.1 20.5c-.7-.7-1.9-.7-2.6 0s-.7 1.9 0 2.6l7.1 7.1-7.1 7.1c-.7.7-.7 1.9 0 2.6.4.4.8.5 1.3.5s.9-.2 1.3-.5l8.4-8.4c.3-.3.5-.8.5-1.3s-.2-.9-.5-1.3l-8.4-8.4z"></path>
             </svg>
         </div>
-<!--        <section>-->
-<!--            <h1>Welcome to the greatest app <br> My movie app</h1>-->
-<!--            <div>-->
-<!--                <a href="#">Read more</a>-->
-<!--            </div>-->
-<!--        </section>-->
+        <section>
+            <h1>Welcome to the greatest app <br> My movie app</h1>
+            <h1 style="color: red">{{allVideos}}</h1>
+            <div>
+                <a :href="'/' + video.id">See more</a>
+            </div>
+        </section>
     </div>
 </template>
 
 <script>
+    // import {mapGetters} from 'vuex'
     export default {
         name: "slider",
         data(){
             return {
                 videoUrls:[
-                    'https://static.namava.ir/Content/Upload/Images/0a4d648f-8a15-46ad-8ed9-ff6293f1af31.mp4',
-                    'https://static.namava.ir/Content/Upload/Images/cf127cc2-00cf-49e6-a360-d63573841e60.mp4',
-                    'https://static.namava.ir/Content/Upload/Images/88532db8-bb25-4cdf-9b59-043bbf34efce.mp4',
-                    'https://static.namava.ir/Content/Upload/Images/3785f759-8a47-427b-a1a7-231f2d2b79b4.mp4'
+                    {
+                        url: 'https://static.namava.ir/Content/Upload/Images/0a4d648f-8a15-46ad-8ed9-ff6293f1af31.mp4',
+                        id:'tt10919420'
+                    },
+                    {
+                        url: 'https://static.namava.ir/Content/Upload/Images/cf127cc2-00cf-49e6-a360-d63573841e60.mp4',
+                        id: 'tt12078990'
+                    },
+                    {
+                        url: 'https://static.namava.ir/Content/Upload/Images/88532db8-bb25-4cdf-9b59-043bbf34efce.mp4',
+                        id:'tt6714432'
+                    },
+                    {
+                        url: 'https://static.namava.ir/Content/Upload/Images/3785f759-8a47-427b-a1a7-231f2d2b79b4.mp4',
+                        id: 'tt7991608'
+                    }
                 ],
                 videoIndex: 0
             }
         },
         computed:{
-          url(){
+          video(){
               return this.videoUrls[this.videoIndex];
-          }
+          },
+
         },
         methods:{
             changeVideo(point){
@@ -95,7 +110,11 @@
         width: fit-content;
         position: absolute;
         left: 5vw;
-        bottom: 18.03125vw;
+        bottom: 13.03125vw;
+        @media screen and (max-width: $lapTop){
+            bottom: 150px;
+            left: calc(50% - 230px);
+        }
         h1{
             color: #FFFFFF;
             font-weight: normal;
@@ -144,31 +163,25 @@
             }
             @media screen and (max-width: $lapTop) and (min-width: $tablet){
                 right: calc(50vw - 50px);
-                bottom: 15vh;
+                bottom: 40px;
             }
             @media screen and (max-width: $tablet){
                 right: calc(50vw - 60px);
                 width: 120px;
             }
-            @media screen and (max-width: $tablet) and (min-width: $mobile){
-                bottom: 25vh;
-            }
-            @media screen and (max-width: $mobile){
-                bottom: 45vh;
-            }
             svg{
                 width: 40px;
                 height: 40px;
-                @media screen and (max-width: $tablet) and (min-width: $mobile){
-                    width: 45px;
-                    height: 45px;
-                }
                 border-radius: 50%;
                 outline: none;
                 border: none;
                 background-color: rgba(55,56,62,0.7);
                 color: honeydew;
                 cursor: pointer;
+                @media screen and (max-width: $tablet) and (min-width: $mobile){
+                    width: 45px;
+                    height: 45px;
+                }
                 &:first-of-type{
                     transform: rotate(180deg);
                 }

@@ -60,7 +60,7 @@
             goBack(){
                 router.back();
             },
-        }
+        },
     }
 </script>
 

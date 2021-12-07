@@ -12,9 +12,9 @@
 <script>
 // @ is an alias to /src
 import {useRoute} from 'vue-router'
-import movieInfo from "../components/movieInfo";
-import movieCast from "../components/movieCast";
-import blockQuote from "../components/blockquote";
+import movieInfo from "../components/MoviePage/movieInfo";
+import movieCast from "../components/MoviePage/movieCast";
+import blockQuote from "../components/MoviePage/blockquote";
 import loading from "../components/loading";
 export default {
 name: 'MoviePage',

@@ -12,10 +12,10 @@
 
 <script>
 // @ is an alias to /src
-import posterSlider from "../components/posterSlider";
-import slider from "../components/slider";
-import theStory from "../components/theStory";
-import faqHolder from "../components/faqHolder";
+import posterSlider from "../components/Home/posterSlider";
+import slider from "../components/Home/slider";
+import theStory from "../components/Home/theStory";
+import faqHolder from "../components/Home/faqHolder";
 export default {
     name: 'Home',
     components: {
