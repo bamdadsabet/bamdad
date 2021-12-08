@@ -55,9 +55,6 @@
             }
         },
         mounted() {
-            console.log('hello')
-            console.log('hello')
-            console.log('do')
             this.carousel = document.querySelector(`div#${this.$props.title} div.Carousel`);
         }
     }
