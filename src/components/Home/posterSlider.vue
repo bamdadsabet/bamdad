@@ -1,12 +1,12 @@
 <template>
-    <div class="carousel-container">
+    <div class="carousel-container" :id="title">
         <h1>{{ title }}</h1>
         <div class="Carousel">
             <moviePoster v-for="id in movieIds" :key="id" :movie-id="id"  />
         </div>
         <div class="button-container">
-            <button @click="scrollTo('left', $event.target)"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="40" viewBox="10 0 20 40"><path class="svg-c1" d="M14.77 18.793c0-.493.196-.967.545-1.315l6.2-6.2a1.86 1.86 0 0 1 2.626 2.633l-4.88 4.882 4.88 4.88a1.86 1.86 0 0 1-2.63 2.63l-6.2-6.2c-.347-.348-.54-.82-.54-1.31z" style="transform: translateY(2px);"></path></svg></button>
-            <button @click="scrollTo('right', $event.target)"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="40" viewBox="10 0 20 40"><g style="transform: rotate(180deg); transform-origin: 20px center;"><path class="svg-c1" d="M14.77 18.793c0-.493.196-.967.545-1.315l6.2-6.2a1.86 1.86 0 0 1 2.626 2.633l-4.88 4.882 4.88 4.88a1.86 1.86 0 0 1-2.63 2.63l-6.2-6.2c-.347-.348-.54-.82-.54-1.31z"></path></g></svg></button>
+            <button @click="scrollTo('left')"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="40" viewBox="10 0 20 40"><path class="svg-c1" d="M14.77 18.793c0-.493.196-.967.545-1.315l6.2-6.2a1.86 1.86 0 0 1 2.626 2.633l-4.88 4.882 4.88 4.88a1.86 1.86 0 0 1-2.63 2.63l-6.2-6.2c-.347-.348-.54-.82-.54-1.31z" style="transform: translateY(2px);"></path></svg></button>
+            <button @click="scrollTo('right')"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="40" viewBox="10 0 20 40"><g style="transform: rotate(180deg); transform-origin: 20px center;"><path class="svg-c1" d="M14.77 18.793c0-.493.196-.967.545-1.315l6.2-6.2a1.86 1.86 0 0 1 2.626 2.633l-4.88 4.882 4.88 4.88a1.86 1.86 0 0 1-2.63 2.63l-6.2-6.2c-.347-.348-.54-.82-.54-1.31z"></path></g></svg></button>
         </div>
     </div>
 </template>
@@ -18,11 +18,11 @@
         components: {
             moviePoster
         },
-        data(){
-            return{
+        data: function () {
+            return {
                 scrollAmount: 0,
                 scrollPerClick: window.innerWidth,
-                movies: null
+                movies: null,
             }
         },
         props: {
@@ -30,16 +30,13 @@
             movieIds: Array
         },
         methods:{
-            scrollTo(to, elm){
-                let scroll = elm
-                    .parentElement
-                    .parentElement
-                    .querySelector('div.Carousel');
+            scrollTo(to){
+                let carousel = this.carousel;
                 let scrollAmount = this.scrollAmount;
                 let scrollPerClick = this.scrollPerClick;
                 if (to === 'right') {
                     scrollAmount += this.scrollPerClick;
-                    scrollAmount = scrollAmount + scrollPerClick > scroll.scrollWidth ? scroll.scrollWidth - scrollPerClick : scrollAmount;
+                    scrollAmount = scrollAmount + scrollPerClick > carousel.scrollWidth ? carousel.scrollWidth - scrollPerClick : scrollAmount;
                 }
                 else if (to === 'left') {
                     scrollAmount -= this.scrollPerClick;
@@ -49,7 +46,7 @@
                     console.error('the parameter to must be either "left" or "right"');
                     return null;
                 }
-                scroll.scrollTo({
+                carousel.scrollTo({
                     top: 0,
                     left: scrollAmount,
                     behavior:"smooth"
@@ -57,6 +54,12 @@
                 this.scrollAmount = scrollAmount;
             }
         },
+        mounted() {
+            console.log('hello')
+            console.log('hello')
+            console.log('do')
+            this.carousel = document.querySelector(`div#${this.$props.title} div.Carousel`);
+        }
     }
 </script>
 

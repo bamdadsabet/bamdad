@@ -27,7 +27,7 @@
             </section>
         </section>
         <div v-if="data" class="poster">
-            <img :src="data.poster" alt="">
+            <img :src="data.poster" :alt="data.title">
             <div>
                 <span class="fav">favorite</span>
                 <span class="watch-later">watch later</span>
@@ -163,6 +163,7 @@
             img{
                 border-radius: 5px;
                 height: 450px;
+                width: 305px;
                 box-shadow: 2px 2px 8px #37383e, -2px -2px 8px #37383e ;
                 display: block;
                 @media screen and (max-width: $mobile){

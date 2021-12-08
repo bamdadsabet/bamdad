@@ -1,6 +1,6 @@
 <template>
     <a v-if="!isLoading" :href="'/'+movieId" @click="log" :class="{search: search , slider: !search}">
-        <img v-if="movie" :src="movie.poster" alt="">
+        <img v-if="movie.poster !== 'N/A'" :src="movie.poster" alt="">
 <!--        hover background-->
         <div></div>
 <!--        poster info-->
@@ -21,7 +21,7 @@
 <!--        title-->
         <h2 v-if="movie">{{movie.title}}</h2>
     </a>
-    <a v-else :class="{search: search , slider: !search}">
+    <a v-else-if="movie !== false" :class="{search: search , slider: !search}">
 
     </a>
 </template>
@@ -55,7 +55,10 @@
                         rating: data.imdbRating !== 'N/A' && data.imdbRating,
                     };
                     this.isLoading = false;
-                });
+                })
+            .catch(() => {
+                this.movie = false
+            });
         }
     }
 </script>
